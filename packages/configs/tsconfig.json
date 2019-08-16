@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": true,
+    "baseUrl": "..",
+    "rootDirs": [
+      "../protocol/src",
+      "../hooks/src",
+    ],
+    "paths": {
+      "clubhouse-protocol": ["./protocol/src/index.ts"]
+    }
+  }
+}

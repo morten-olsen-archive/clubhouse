@@ -1,0 +1,7 @@
+{
+  "extends": "clubhouse-configs/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "build/babel",
+  }
+}
