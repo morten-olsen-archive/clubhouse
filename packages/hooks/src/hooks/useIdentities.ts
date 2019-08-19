@@ -1,5 +1,5 @@
-import context from '../context';
 import { useContext } from 'react';
+import context from '../context';
 
 const useIdentities = () => {
   const {

@@ -1,5 +1,5 @@
-import context from '../context';
 import { useContext, useState, useEffect } from 'react';
+import context from '../context';
 import useChannel from './useChannel';
 
 const useMessages = (channelId: string) => {
@@ -10,7 +10,7 @@ const useMessages = (channelId: string) => {
   const [messages, setMessages] = useState();
 
   useEffect(() => {
-    if (!db) return;
+    if (!db) return undefined;
 
     const subscriptions = db.messages.find().$.subscribe((elements) => {
       setMessages(elements);
@@ -25,7 +25,7 @@ const useMessages = (channelId: string) => {
     channel,
     identity,
     messages,
-  }
-}
+  };
+};
 
 export default useMessages;

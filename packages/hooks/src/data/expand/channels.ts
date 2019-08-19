@@ -1,7 +1,7 @@
-import { Channel, Transporter } from 'clubhouse-protocol';
-import { DBType } from "../createDB";
-import context from '../../context';
 import { Context } from 'react';
+import { Channel, Transporter } from 'clubhouse-protocol';
+import { DBType } from '../createDB';
+import context from '../../context';
 
 type ContextType = typeof context extends Context<infer U> ? U : never;
 type IdentityType = Exclude<ContextType['identities'], undefined>;
@@ -12,9 +12,9 @@ const expandChannels = async (
   transporter: Transporter,
 ) => {
   const channelData = await db.channels.find().exec();
-  const result = await Promise.all(channelData.map(async (data) => {
-    const result = identities.find(i => i.id === data.identity);
-    const { identity } = result as Exclude<typeof result, undefined>
+  const tasks = channelData.map(async (data) => {
+    const resultInner = identities.find((i) => i.id === data.identity);
+    const { identity } = resultInner as Exclude<typeof resultInner, undefined>;
     if (!identity) {
       throw new Error('channel identity not found');
     }
@@ -41,8 +41,9 @@ const expandChannels = async (
       name: data.name,
       identity: data.identity,
       channel,
-    }
-  }));
+    };
+  });
+  const result = await Promise.all(tasks);
   return result;
 };
 

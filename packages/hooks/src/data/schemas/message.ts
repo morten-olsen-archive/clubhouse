@@ -56,7 +56,7 @@ const schema: RxJsonSchema<Message> = {
     fingerprint: {
       type: 'string',
     },
-  }
+  },
 };
 
 export default schema;

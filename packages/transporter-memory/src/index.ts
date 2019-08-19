@@ -8,11 +8,11 @@ const create = () => {
     async get(id: string) {
       return data[id];
     }
-    
+
     async add(id: string, value: string) {
       data[id] = value;
     }
-  
+
     async waitForSignal(signal: string) {
       let resolver: () => void = () => {};
       const promise = new Promise<void>((resolve) => {
@@ -29,6 +29,6 @@ const create = () => {
   return {
     Transporter: TestTransporter as new () => Transporter,
   };
-}
+};
 
 export default create;

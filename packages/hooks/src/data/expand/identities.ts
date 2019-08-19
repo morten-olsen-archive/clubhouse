@@ -1,5 +1,5 @@
 import { Identity } from 'clubhouse-protocol';
-import { DBType } from "../createDB";
+import { DBType } from '../createDB';
 
 const expandIdentites = async (
   db: DBType,
@@ -11,7 +11,7 @@ const expandIdentites = async (
       id: data.id,
       name: data.name,
       identity,
-    }
+    };
   }));
   return result;
 };

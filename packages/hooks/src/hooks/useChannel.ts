@@ -1,5 +1,5 @@
-import context from '../context';
 import { useContext } from 'react';
+import context from '../context';
 
 const useChannel = (id: string) => {
   const {
@@ -7,13 +7,13 @@ const useChannel = (id: string) => {
     identities = [],
   } = useContext(context);
 
-  const channel = channels.find(i => i.id === id);
+  const channel = channels.find((i) => i.id === id);
   if (!channel) {
-    return {}
+    return {};
   }
-  const identity = identities.find(i => i.id === channel.identity);
+  const identity = identities.find((i) => i.id === channel.identity);
   if (!identity) {
-    return {}
+    return {};
   }
 
   return {

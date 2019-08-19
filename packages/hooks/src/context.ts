@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import { DBType } from './data/createDB';
 import { Channel, Identity } from 'clubhouse-protocol';
+import { DBType } from './data/createDB';
 
 interface ContextType {
   db?: DBType;

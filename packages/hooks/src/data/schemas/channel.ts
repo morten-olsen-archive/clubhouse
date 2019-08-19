@@ -29,7 +29,7 @@ const schema: RxJsonSchema<Channel> = {
     restoreKey: {
       type: 'string',
     },
-  }
+  },
 };
 
 export default schema;

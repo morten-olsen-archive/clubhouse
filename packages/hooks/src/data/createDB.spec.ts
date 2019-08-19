@@ -10,7 +10,7 @@ describe('data', () => {
 
     afterEach(async () => {
       await db.db.remove();
-    })
+    });
 
     it('should be able to create db', async () => {
       expect(db.db).toBeDefined();

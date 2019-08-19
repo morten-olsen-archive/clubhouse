@@ -18,7 +18,10 @@
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "error",
     "lines-between-class-members": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": "off"
   },
   "settings": {
     "import/extensions": [".js",".jsx",".ts",".tsx"],

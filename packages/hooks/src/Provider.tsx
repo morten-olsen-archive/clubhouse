@@ -1,10 +1,16 @@
-import React, { FunctionComponent, useState, Context, useEffect, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  Context,
+  useEffect,
+  ReactNode,
+} from 'react';
+import uuid from 'uuid/v4';
+import { Identity, Channel, Transporter } from 'clubhouse-protocol';
 import context from './context';
 import createDB, { DBType } from './data/createDB';
 import expandIdentites from './data/expand/identities';
 import expandChannels from './data/expand/channels';
-import { Identity, Channel, Transporter } from 'clubhouse-protocol';
-import uuid from 'uuid/v4';
 
 const ContextProvider = context.Provider;
 
@@ -39,7 +45,7 @@ const Provider: FunctionComponent<Props> = ({
     if (!db || !identities) {
       throw Error('db not ready');
     }
-    const identity = identities.find(i => i.id === identityId);
+    const identity = identities.find((i) => i.id === identityId);
     if (!identity) {
       throw new Error('Identity not found');
     }
@@ -60,7 +66,7 @@ const Provider: FunctionComponent<Props> = ({
         name,
         identity: identityId,
         channel,
-      }
+      },
     ]);
   };
 
@@ -97,7 +103,7 @@ const Provider: FunctionComponent<Props> = ({
 
   useEffect(() => {
     createDB(adapter)
-      .then(async nDB => {
+      .then(async (nDB) => {
         setDB(nDB);
         const nIdentities = await expandIdentites(nDB);
         setIdentities(nIdentities);
@@ -114,13 +120,11 @@ const Provider: FunctionComponent<Props> = ({
       });
   });
 
-  
-
   return (
     <ContextProvider value={contextValues}>
       {loading ? loader : children}
     </ContextProvider>
-  )
+  );
 };
 
 export default Provider;
