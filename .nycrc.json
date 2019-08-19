@@ -6,7 +6,7 @@
     "text-summary"
   ],
   "include": [
-    "src/**/*.ts"
+    "**/*.ts"
   ],
   "extension": [
     ".js",

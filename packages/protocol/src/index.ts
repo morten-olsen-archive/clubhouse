@@ -1,6 +1,7 @@
 import Identity from './Identity';
 import Channel from './Channel';
 import RuleSet from './RuleSet';
+import Transporter from './Transporter';
 
 const loadIdentity = Identity.open;
 const createIdentity = Identity.create;
@@ -16,4 +17,5 @@ export {
   loadChannel,
   createIdentity,
   createChannel,
+  Transporter,
 };

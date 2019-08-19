@@ -28,6 +28,10 @@ class Identity {
     return this._key.getFingerprint();
   }
 
+  get validKey() {
+    return !!this._key;
+  }
+
   get publicKey() {
     return this._key.toPublic();
   }

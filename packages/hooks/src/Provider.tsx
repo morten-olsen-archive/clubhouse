@@ -3,8 +3,7 @@ import context from './context';
 import createDB, { DBType } from './data/createDB';
 import expandIdentites from './data/expand/identities';
 import expandChannels from './data/expand/channels';
-import Transporter from 'clubhouse-protocol/build/babel/Transporter';
-import { Identity, Channel } from 'clubhouse-protocol';
+import { Identity, Channel, Transporter } from 'clubhouse-protocol';
 import uuid from 'uuid/v4';
 
 const ContextProvider = context.Provider;

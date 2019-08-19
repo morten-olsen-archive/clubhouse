@@ -1,28 +1,28 @@
 import { RxJsonSchema } from 'rxdb';
 
-interface BaseMessage {
+export interface BaseMessage {
   id: string;
   received: number;
   channel: string;
   sender?: string;
 }
 
-interface TextMessage {
+export interface TextMessage {
   type: 'text'
   message: string;
 }
 
-interface ErrorMessage {
+export interface ErrorMessage {
   type: 'error'
   message: string;
 }
 
-interface AddMemberMessage {
+export interface AddMemberMessage {
   type: 'add-member'
   fingerprint: string;
 }
 
-interface RemoveMemberMessage {
+export interface RemoveMemberMessage {
   type: 'remove-member'
   fingerprint: string;
 }

@@ -1,0 +1,17 @@
+{
+  "name": "test-transporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:js": "babel --extensions .ts --source-maps inline -d build/babel src/",
+    "build:types": "tsc --build tsconfig.build.json",
+    "build": "npm run build:types && npm run build:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clubhouse-protocol": "^1.0.1-alpha.1"
+  }
+}

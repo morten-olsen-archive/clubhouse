@@ -1,6 +1,6 @@
 import { RxJsonSchema } from 'rxdb';
 
-interface Identity {
+export interface Identity {
   id: string;
   name: string;
   key: string;

@@ -1,6 +1,5 @@
-import { Channel, Identity } from 'clubhouse-protocol';
+import { Channel, Transporter } from 'clubhouse-protocol';
 import { DBType } from "../createDB";
-import Transporter from 'clubhouse-protocol/build/babel/Transporter';
 import context from '../../context';
 import { Context } from 'react';
 

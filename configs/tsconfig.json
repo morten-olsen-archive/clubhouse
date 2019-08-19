@@ -11,11 +11,12 @@
     "declaration": true,
     "baseUrl": "..",
     "rootDirs": [
-      "../protocol/src",
-      "../hooks/src",
+      "./packages",
     ],
     "paths": {
-      "clubhouse-protocol": ["./protocol/src/index.ts"]
+      "clubhouse-protocol": ["./packages/protocol/src/index.ts"],
+      "clubhouse-hooks": ["./packages/hooks/src/index.ts"],
+      "clubhouse-test-trasporter": ["./packages/test-trasporter/src/index.ts"],
     }
   }
 }

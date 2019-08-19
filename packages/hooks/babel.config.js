@@ -1,3 +1,3 @@
-const config = require('clubhouse-configs/babel.config');
+const config = require('../../configs/babel.config');
 
 module.exports = config;
