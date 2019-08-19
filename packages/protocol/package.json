@@ -13,8 +13,6 @@
   },
   "main": "build/babel/index.js",
   "scripts": {
-    "test:types": "tsc --noEmit",
-    "test": "npm run test:types",
     "build:js": "babel --extensions .ts --source-maps inline -d build/babel src/",
     "build:docs": "npx typedoc --out docs/ts",
     "build:types": "tsc --build tsconfig.build.json",

@@ -4,8 +4,10 @@
   "scripts": {
     "test:lint": "yarn eslint --ext .ts ./packages/*/src/",
     "test:unit": "NODE_ENV=test nyc jasmine",
+    "test:types": "tsc",
     "test:own": "lerna run test",
-    "test": "npm run test:lint && npm run test:unit && npm run test:own",
+    "test": "npm run test:lint && npm run test:types && npm run test:unit && npm run test:own",
+    "dev": "lerna run --stream --parallel dev",
     "build": "lerna run build",
     "prepare": "npm run build",
     "postinstall": "lerna bootstrap"
