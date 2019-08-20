@@ -8,6 +8,7 @@ const config = (api) => {
           //node: 10,
         },
       }],
+      '@babel/preset-react',
       '@babel/preset-typescript',
     ],
     plugins: [

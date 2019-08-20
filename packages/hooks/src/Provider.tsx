@@ -25,7 +25,7 @@ interface Props {
   children: ReactNode;
   transporter: Transporter;
   loader?: ReactNode;
-  onReady: (context: ContextType) => any;
+  onReady?: (context: ContextType) => any;
 }
 
 const Provider: FunctionComponent<Props> = ({
@@ -118,7 +118,7 @@ const Provider: FunctionComponent<Props> = ({
         setError(err);
         console.error(err);
       });
-  });
+  }, []);
 
   return (
     <ContextProvider value={contextValues}>
