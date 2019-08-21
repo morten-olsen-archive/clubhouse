@@ -1,9 +1,9 @@
 import { Context } from 'react';
+import { RxDocument } from 'rxdb';
 import { Channel, Transporter } from 'clubhouse-protocol';
 import { DBType } from '../createDB';
 import { Channel as DBChannel } from '../schemas/channel';
 import context from '../../context';
-import { RxDocument } from 'rxdb';
 
 type ContextType = typeof context extends Context<infer U> ? U : never;
 type IdentityType = Exclude<ContextType['identities'], undefined>;
@@ -12,7 +12,6 @@ export const setupChannel = async (data: RxDocument<DBChannel>, channel: Channel
   channel.on('updated', async (messages) => {
     const updateKey = await channel.pack();
     await Promise.all(messages.map(async (message) => {
-      console.log('c', message, channel);
       if (message instanceof Error) {
         return;
       }
@@ -41,7 +40,7 @@ export const setupChannel = async (data: RxDocument<DBChannel>, channel: Channel
       },
     });
   });
-}
+};
 
 const expandChannels = async (
   db: DBType,

@@ -8,7 +8,7 @@ const useIntroductions = (channel: string) => {
   if (!db) {
     return {
       getInfo: (a: string) => a,
-    }
+    };
   }
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const useIntroductions = (channel: string) => {
     });
     return () => {
       subscription.unsubscribe();
-    }
+    };
   }, [channel]);
 
   const getInfo = (fingerprint?: string) => {
     if (!fingerprint) {
       return 'system';
     }
-    const item = cache.find(item => item.id === fingerprint);
+    const item = cache.find((i) => i.id === fingerprint);
     if (item) {
       return item.name;
     }

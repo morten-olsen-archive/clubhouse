@@ -1,14 +1,13 @@
-import React, { FunctionComponent, useState } from 'react';
+import React from 'react';
 import ReactDropzone from 'react-dropzone';
-import { useIdentities, useChannel } from 'clubhouse-hooks';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
+import { useChannel } from 'clubhouse-hooks';
 
 const CreateIdentity = withRouter(({
   match,
   history,
 }) => {
   const channelId = match.params.channel;
-  const { createIdentity } = useIdentities();
   const { channel } = useChannel(channelId);
   if (!channel) {
     return null;
@@ -19,8 +18,8 @@ const CreateIdentity = withRouter(({
         onDrop={(files) => {
           const [key] = files;
           const reader = new FileReader();
-          reader.onload = (evt) => {
-            if(evt.target.readyState != 2) {
+          reader.onload = (evt: any) => {
+            if (!evt.target || !evt.target.result || evt.target.readyState !== 2) {
               return;
             }
             channel.channel.send({
@@ -33,10 +32,10 @@ const CreateIdentity = withRouter(({
           reader.readAsText(key);
         }}
       >
-        {({getRootProps, getInputProps}) => (
+        {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Drag n drop some files here, or click to select files</p>
           </div>
         )}
       </ReactDropzone>

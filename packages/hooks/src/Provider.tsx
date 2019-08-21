@@ -73,7 +73,7 @@ const Provider: FunctionComponent<Props> = ({
     return id;
   };
 
-  const addChannel: AddChannelType = async (identityId, invitation, senderKey) => {
+  const addChannel: AddChannelType = async (name, identityId, invitation, senderKey) => {
     if (!db || !identities) {
       throw Error('db not ready');
     }
@@ -111,7 +111,7 @@ const Provider: FunctionComponent<Props> = ({
     const id = uuid();
     const key = await Identity.create({ name: 'John Doe', email: 'john.doe@example.com' });
     const identity = await Identity.open(key);
-    expandChannels(db, identities, transporter);
+    expandChannels(db, identities as Exclude<typeof identities, undefined>, transporter);
     setIdentities([
       ...(identities || []),
       {

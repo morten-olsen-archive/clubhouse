@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useChannels, useIdentities } from 'clubhouse-hooks';
 import { layouts } from 'clubhouse-ui';
@@ -14,31 +14,31 @@ const ChannelList = withRouter(({
   return (
     <div>
       <button
+        type="button"
         onClick={() => {
           history.push('/channel-create');
         }}
       >
         Create
       </button>
-        <button
-          onClick={() => {
-            download(identities[0].identity.publicKey.armor(), 'octo/any')
-          }}
-        >
-          Download Identity
-        </button>
-      {channels.map((channel) => {
-        return (
-          <Link key={channel.id} to={`/channel/${channel.id}`}>
-            <Channel
-              id={channel.id}
-              name={channel.name}
-            />
-          </Link>
-        )
-      })}
+      <button
+        type="button"
+        onClick={() => {
+          download(identities[0].identity.publicKey.armor(), 'octo/any');
+        }}
+      >
+        Download Identity
+      </button>
+      {channels.map((channel) => (
+        <Link key={channel.id} to={`/channel/${channel.id}`}>
+          <Channel
+            id={channel.id}
+            name={channel.name}
+          />
+        </Link>
+      ))}
     </div>
-  )
+  );
 });
 
 export default ChannelList;

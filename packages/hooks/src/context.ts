@@ -18,7 +18,7 @@ interface ContextType {
   }[];
   createChannel: (identity: string, name: string) => Promise<string>;
   createIdentity: (name: string) => Promise<any>;
-  addChannel: (identity: string, invitation: string, sender: string) => Promise<void>;
+  addChannel: (name: string, identity: string, invitation: string, sender: string) => Promise<void>;
 }
 
 const context = createContext<ContextType>({

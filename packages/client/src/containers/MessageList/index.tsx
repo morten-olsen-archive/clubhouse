@@ -1,9 +1,8 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useMessages, useIntoductions } from 'clubhouse-hooks';
 import styled from 'styled-components';
 import renderMessage from './renderMessage';
-import { identity } from 'rxjs';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -45,11 +44,13 @@ const MessageList = withRouter(({
   }
   return (
     <Wrapper>
-      <div>{channel.channel.members.all.map((member) => (
-        <span key={member.fingerprint}>{getInfo(member.fingerprint)}</span>
-      ))}</div>
+      <div>
+        {channel.channel.members.all.map((member) => (
+          <span key={member.fingerprint}>{getInfo(member.fingerprint)}</span>
+        ))}
+      </div>
       <Messages>
-        {messages.map(message => (
+        {messages.map((message) => (
           <Message key={message.id}>
             {renderMessage(message, getInfo, identity.identity, channel.channel)}
           </Message>
@@ -58,6 +59,7 @@ const MessageList = withRouter(({
       <Compose>
         <Input value={text} onChange={(evt) => setText(evt.target.value)} />
         <button
+          type="submit"
           onClick={() => {
             channel.channel.send({
               type: 'text',
@@ -70,6 +72,7 @@ const MessageList = withRouter(({
           Send
         </button>
         <button
+          type="submit"
           onClick={() => {
             channel.channel.send({
               type: 'introduction',
@@ -82,15 +85,16 @@ const MessageList = withRouter(({
           Introduce
         </button>
         <button
+          type="submit"
           onClick={() => {
-            history.push(`/channel/${channelId}/invite`)
+            history.push(`/channel/${channelId}/invite`);
           }}
         >
           Invite
         </button>
       </Compose>
     </Wrapper>
-  )
+  );
 });
 
 export default MessageList;

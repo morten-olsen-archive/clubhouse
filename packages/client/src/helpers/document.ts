@@ -3,5 +3,5 @@ export const download = (data: string, type: string) => {
     type,
   });
   const url = URL.createObjectURL(blob);
-  location.href = url;
-}
+  window.location.href = url;
+};

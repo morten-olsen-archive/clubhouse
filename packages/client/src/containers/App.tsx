@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState, Fragment } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { useIdentities } from 'clubhouse-hooks';
 import { layouts } from 'clubhouse-ui';
 import ChannelList from './ChannelList';
@@ -59,18 +59,18 @@ const App: FunctionComponent = () => {
           <Header />
         </Top>
         <Sidebar>
-            <ChannelList />
+          <ChannelList />
         </Sidebar>
         <Main>
-          <Fragment>
+          <>
             <Route exact path="/channel/:channel" component={MessageList} />
             <Route exact path="/channel/:channel/invite" component={Invite} />
             <Route exact path="/channel-create" component={CreateChannel} />
-          </Fragment>
+          </>
         </Main>
       </Wrapper>
     </Router>
-  )
+  );
 };
 
 export default App;
