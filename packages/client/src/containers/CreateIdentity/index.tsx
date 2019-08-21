@@ -8,6 +8,7 @@ const CreateIdentity: FunctionComponent = () => {
     <div>
       <input value={name} onChange={(evt) => setName(evt.target.value)} />
       <button
+        type="button"
         onClick={() => {
           createIdentity(name);
         }}
@@ -15,7 +16,7 @@ const CreateIdentity: FunctionComponent = () => {
         Create
       </button>
     </div>
-  )
+  );
 };
 
 export default CreateIdentity;

@@ -5,7 +5,7 @@ import * as RxDB from 'rxdb';
 import createTransporter from 'clubhouse-transporter-memory';
 import App from './containers/App';
 
-const memoryAdapter = require('pouchdb-adapter-memory');
+const memoryAdapter = require('pouchdb-adapter-memory'); // eslint-disable-line
 RxDB.plugin(memoryAdapter);
 
 const root = document.createElement('div');
@@ -18,9 +18,7 @@ root.style.height = '100%';
 const { Transporter } = createTransporter();
 const transporter = new Transporter();
 
-const Loader = () => {
-  return <div>loader</div>;
-}
+const Loader = () => <div>loader</div>;
 
 render(
   <Provider

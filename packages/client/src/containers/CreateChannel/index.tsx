@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactDropzone from 'react-dropzone';
 import { useIdentities, useChannels } from 'clubhouse-hooks';
@@ -16,24 +16,25 @@ const CreateIdentity = withRouter(({
         onDrop={(files) => {
           const [key] = files;
           const reader = new FileReader();
-          reader.onload = async (evt) => {
-            if(evt.target.readyState != 2) {
+          reader.onload = async (evt: any) => {
+            if (!evt.target || !evt.target.result || evt.target.readyState !== 2) {
               return;
             }
-            const data = JSON.parse(evt.target.result);
-            addChannel(identities[0].id, data.invite, data.sender);
+            const data = JSON.parse(evt.target.result.toString());
+            addChannel(name, identities[0].id, data.invite, data.sender);
           };
           reader.readAsText(key);
         }}
       >
-        {({getRootProps, getInputProps}) => (
+        {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Drag n drop some files here, or click to select files</p>
           </div>
         )}
       </ReactDropzone>
       <button
+        type="button"
         onClick={async () => {
           const id = await createChannel(identities[0].id, name);
           history.push(`/channel/${id}`);
@@ -42,7 +43,7 @@ const CreateIdentity = withRouter(({
         Create
       </button>
     </div>
-  )
+  );
 });
 
 export default CreateIdentity;

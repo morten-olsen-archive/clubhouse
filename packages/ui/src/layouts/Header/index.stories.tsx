@@ -1,30 +1,16 @@
-import React, { useState, FunctionComponent } from 'react';
-import { storiesOf } from '@storybook/react';
+import React, { FunctionComponent } from 'react';
+import { storiesOf } from '@storybook/react'; // eslint-disable-line
 import Header from '.';
 
-const WithData: FunctionComponent = () => {
-  const [selected, setSelected] = useState<string>();
-  return (
-    <>
-      <Header
-        selectedIdentity={selected}
-        identities={[{
-          id: 'bob',
-          name: 'Bob'
-        }, {
-          id: 'alice',
-          name: 'Alice'
-        }]}
-        onIdentitySelect={setSelected}
-      />
-      hello
-    </>
-  );
-}
+const WithData: FunctionComponent = () => (
+  <>
+    <Header />
+    hello
+  </>
+);
 
 storiesOf('layouts/Header', module)
   .add('Not logged in', () => (
-    <Header
-    />
+    <Header />
   ))
   .add('Logged in', () => <WithData />);
