@@ -2,6 +2,7 @@ import * as RxDB from 'rxdb';
 import identitySchema from './schemas/identity';
 import channelSchema from './schemas/channel';
 import messageSchema from './schemas/message';
+import introductionSchema from './schemas/introduction';
 
 type GetSchemaType<T> = T extends RxDB.RxJsonSchema<infer U> ? U : never;
 
@@ -28,11 +29,17 @@ const create = async (adapter: string) => {
     schema: messageSchema,
   });
 
+  const introductions = await db.collection<GetSchemaType<typeof introductionSchema>>({
+    name: 'introductions',
+    schema: introductionSchema,
+  });
+
   return {
     db,
     identities,
     channels,
     messages,
+    introductions,
   };
 };
 

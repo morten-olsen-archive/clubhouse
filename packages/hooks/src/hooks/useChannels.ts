@@ -5,11 +5,13 @@ const useChannels = () => {
   const {
     channels,
     createChannel,
+    addChannel,
   } = useContext(context);
 
   return {
     channels: channels || [],
     createChannel,
+    addChannel,
   };
 };
 

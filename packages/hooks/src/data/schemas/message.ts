@@ -19,15 +19,15 @@ export interface ErrorMessage {
 
 export interface AddMemberMessage {
   type: 'add-member'
-  fingerprint: string;
+  key: string;
 }
 
 export interface RemoveMemberMessage {
   type: 'remove-member'
-  fingerprint: string;
+  key: string;
 }
 
-type Message = (TextMessage | ErrorMessage | AddMemberMessage | RemoveMemberMessage) & BaseMessage
+export type Message = (TextMessage | ErrorMessage | AddMemberMessage | RemoveMemberMessage) & BaseMessage
 
 const schema: RxJsonSchema<Message> = {
   title: 'Message',
@@ -43,6 +43,7 @@ const schema: RxJsonSchema<Message> = {
     },
     received: {
       type: 'number',
+      index: true,
     },
     channel: {
       type: 'string',
@@ -53,7 +54,7 @@ const schema: RxJsonSchema<Message> = {
     message: {
       type: 'string',
     },
-    fingerprint: {
+    key: {
       type: 'string',
     },
   },

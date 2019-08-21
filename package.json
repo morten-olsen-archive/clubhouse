@@ -9,8 +9,8 @@
     "test": "npm run test:lint && npm run test:types && npm run test:unit && npm run test:own",
     "dev": "lerna run --stream --parallel dev",
     "build": "lerna run build",
-    "prepare": "npm run build",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "storybook": "lerna run --stream storybook"
   },
   "workspaces": [
     "packages/*"

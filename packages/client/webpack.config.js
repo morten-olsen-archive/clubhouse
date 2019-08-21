@@ -8,6 +8,8 @@ const config = {
     alias: {
       'clubhouse-protocol': path.join(__dirname, '../protocol/src/index.ts'),
       'clubhouse-hooks': path.join(__dirname, '../hooks/src/index.ts'),
+      'clubhouse-transporter-memory': path.join(__dirname, '../transporter-memory/src/index.ts'),
+      'clubhouse-ui': path.join(__dirname, '../ui/src/index.ts'),
     },
   },
   plugins: [

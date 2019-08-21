@@ -10,6 +10,7 @@
     "sourceMap": true,
     "declaration": true,
     "baseUrl": "..",
+    "skipLibCheck": true,
     "rootDirs": [
       "./packages",
     ],
@@ -17,8 +18,8 @@
       "clubhouse-protocol": ["./packages/protocol/src/index.ts"],
       "clubhouse-hooks": ["./packages/hooks/src/index.ts"],
       "clubhouse-test-trasporter": ["./packages/test-trasporter/src/index.ts"],
-      "clubhouse-protocol-transporter-memory": ["./packages/trasporter-memory/src/index.ts"],
-      "clubhouse-protocol-transporter-socket": ["./packages/trasporter-socket/src/index.ts"],
+      "clubhouse-transporter-memory": ["./packages/transporter-memory/src/index.ts"],
+      "clubhouse-transporter-socket": ["./packages/transporter-socket/src/index.ts"],
       "clubhouse-server": ["./packages/server/src/index.ts"],
       "clubhouse-ui": ["./packages/ui/src/index.ts"],
     }

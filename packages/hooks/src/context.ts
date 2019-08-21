@@ -16,13 +16,15 @@ interface ContextType {
     identity: string;
     channel: Channel;
   }[];
-  createChannel: (identity: string, name: string) => Promise<any>;
+  createChannel: (identity: string, name: string) => Promise<string>;
   createIdentity: (name: string) => Promise<any>;
+  addChannel: (identity: string, invitation: string, sender: string) => Promise<void>;
 }
 
 const context = createContext<ContextType>({
-  createChannel: async () => {},
+  createChannel: async () => '',
   createIdentity: async () => {},
+  addChannel: async () => {},
 });
 
 export default context;

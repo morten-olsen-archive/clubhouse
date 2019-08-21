@@ -12,9 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "clubhouse-protocol": "^1.0.1-alpha.1",
-    "clubhouse-ui": "^1.0.0-alpha.1"
+    "clubhouse-ui": "^1.0.0-alpha.1",
+    "react-dropzone": "^10.1.7"
   },
   "devDependencies": {
+    "@types/react-dropzone": "^5.1.0",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.1.18",
+    "react-router-dom": "^5.0.1",
+    "styled-components": "^4.3.2",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
