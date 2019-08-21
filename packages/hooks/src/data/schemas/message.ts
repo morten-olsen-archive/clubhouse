@@ -27,7 +27,12 @@ export interface RemoveMemberMessage {
   key: string;
 }
 
-export type Message = (TextMessage | ErrorMessage | AddMemberMessage | RemoveMemberMessage) & BaseMessage
+export type Message = (
+  TextMessage
+  | ErrorMessage
+  | AddMemberMessage
+  | RemoveMemberMessage
+) & BaseMessage;
 
 const schema: RxJsonSchema<Message> = {
   title: 'Message',
