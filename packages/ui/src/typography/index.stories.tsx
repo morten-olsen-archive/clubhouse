@@ -1,18 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import * as typography from '.';
+import * as texts from './index';
 
 storiesOf('typography', module)
   .add('Texts', () => {
-    const names = Object.keys(typography);
+    const keys = Object.keys(texts);
     return (
       <>
-        {names.map((name) => {
-          const Component = (typography as any)[name];
-
-          return (
-            <Component>{name}</Component>
-          )
+        {keys.map((key) => {
+          const Component = (texts as any)[key];
+          return <Component key={key}>{key}</Component>;
         })}
       </>
     );
