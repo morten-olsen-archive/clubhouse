@@ -6,9 +6,7 @@ const rules: {[name: string]: RuleRunner<any, any, any>} = {
 };
 
 class DefaultRuleProvider implements Rules {
-  get = async (name: string) => {
-    return rules[name];
-  }
+  get = async (name: string) => rules[name]
 }
 
 export default DefaultRuleProvider;

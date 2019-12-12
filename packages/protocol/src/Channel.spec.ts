@@ -7,7 +7,7 @@ type EnvType = PromiseType<ReturnType<typeof createEnv>>;
 
 describe('protocol/channel', () => {
   let env: EnvType;
-  let channels: Channel[] = [];
+  const channels: Channel[] = [];
 
   before(async () => {
     env = await createEnv(3);
@@ -25,15 +25,14 @@ describe('protocol/channel', () => {
     expect(messages).to.have.length(1);
     const [message] = messages;
     expect(message.sender.fingerprint).to.be.eq(env.users[0].identity.getFingerprint());
-    expect(message.receivers.map(r => r.fingerprint)).to.be.eql(
-      env.users.map(u => u.identity.getFingerprint())
+    expect(message.receivers.map((r) => r.fingerprint)).to.be.eql(
+      env.users.map((u) => u.identity.getFingerprint()),
     );
     channels.push(channel);
   });
 
   it('should be able to invite users', async () => {
     const invite = await channels[0].createInvite(env.users[1].publicKey, 'foo');
-    expect(invite).to.not.be.undefined;
     const { channel, data } = await Channel.loadInvite(
       invite,
       env.users[1].identity,
@@ -42,7 +41,7 @@ describe('protocol/channel', () => {
       env.users[1].getConfig,
       env.users[1].setConfig,
     );
-    expect(data).to.be.eq('foo')
+    expect(data).to.be.eq('foo');
     channels.push(channel);
   });
 
@@ -53,11 +52,11 @@ describe('protocol/channel', () => {
     await channels[0].send('world');
     const messages2 = await channels[1].update();
     expect(messages2).to.have.length(2);
-    expect(messages2.map(m => m.message)).to.be.eql([
+    expect(messages2.map((m) => m.message)).to.be.eql([
       'hello',
       'world',
     ]);
-    expect(messages2.map(m => m.sender.fingerprint)).to.be.eql([
+    expect(messages2.map((m) => m.sender.fingerprint)).to.be.eql([
       env.users[0].identity.getFingerprint(),
       env.users[0].identity.getFingerprint(),
     ]);

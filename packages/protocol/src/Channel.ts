@@ -10,7 +10,7 @@ import Queue from './Queue';
 
 type GetConfig = () => Promise<ChannelConfig>;
 type SaveConfig = (config: ChannelConfig) => Promise<void>;
-type Listener<T = any> = (message: Message<T>) => Promise<void> | void;
+type Listener<T = any> = (message: Message<T>) => Promise<void> | void;
 
 class Channel {
   private identity: any;
@@ -19,7 +19,7 @@ class Channel {
   private getConfig: GetConfig;
   private setConfig: SaveConfig;
   private queue = new Queue();
-  private listeners: Listener[] = [];
+  private listeners: Listener[] = [];
 
   constructor(
     identity: any,
@@ -35,24 +35,25 @@ class Channel {
     this.setConfig = setConfig;
   }
 
-  private decryptMessages = async (pkgs: string[]) => {
-    return await Promise.all(pkgs.map(async (pkg) => {
-      const decrypted = await members.decrypt(
-        pkg,
-        this.keyring.toPublicKeys(),
-        this.identity,
-      );
-      return {
-        ...decrypted,
-        message: JSON.parse(decrypted.message),
-      };
-    }));
-  }
+  private decryptMessages = async (pkgs: string[]) => Promise.all(pkgs.map(async (pkg) => {
+    const decrypted = await members.decrypt(
+      pkg,
+      this.keyring.toPublicKeys(),
+      this.identity,
+    );
+    return {
+      ...decrypted,
+      message: JSON.parse(decrypted.message),
+    };
+  }))
 
   private handleSubscriptions = async (messages: any[]) => {
     try {
-      for (let message of messages) {
-        for (let listener of this.listeners) {
+      for (let messageIndex = 0; messageIndex < messages.length; messageIndex += 1) {
+        const message = messages[messageIndex];
+        for (let listenerId = 0; listenerId < this.listeners.length; listenerId += 1) {
+          const listener = this.listeners[listenerId];
+          // eslint-disable-next-line no-await-in-loop
           await listener(message);
         }
       }
@@ -66,7 +67,7 @@ class Channel {
   }
 
   unsubscribe = (listener: Listener) => {
-    this.listeners = this.listeners.filter(l => l !== listener);
+    this.listeners = this.listeners.filter((l) => l !== listener);
   }
 
   update = () => this.queue.add(async () => {
@@ -78,7 +79,10 @@ class Channel {
     return decrypted;
   });
 
-  send = (data: any, receivers: string[] = this.keyring.toPublicKeys()) => this.queue.add(async () => {
+  send = (
+    data: any,
+    receivers: string[] = this.keyring.toPublicKeys(),
+  ) => this.queue.add(async () => {
     const encrypted = await members.encrypt(
       JSON.stringify(data),
       this.identity,

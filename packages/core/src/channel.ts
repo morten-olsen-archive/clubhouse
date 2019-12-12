@@ -9,7 +9,8 @@ const getRawData = async (id: string, transporter: Transporter) => {
     const rawData = await transporter.get(id);
     return rawData;
   }
-}
+  return undefined;
+};
 
 const decrypt = async (rawData: string, channelKey: string) => {
   const channelPackage = await openpgp.decrypt({
@@ -17,7 +18,7 @@ const decrypt = async (rawData: string, channelKey: string) => {
     passwords: [channelKey],
   });
   return channelPackage.data as string;
-}
+};
 
 const encrypt = async (data: string, channelKey: string) => {
   const packed = await openpgp.encrypt({
@@ -25,7 +26,7 @@ const encrypt = async (data: string, channelKey: string) => {
     passwords: [channelKey],
   });
   return packed.data;
-}
+};
 
 const getPackage = async (config: ChannelConfig, transporter: Transporter) => {
   const data = await getRawData(config.keys.nextId, transporter);
@@ -49,13 +50,14 @@ const getPackage = async (config: ChannelConfig, transporter: Transporter) => {
   return {
     newConfig,
     pkg: channelPackage,
-  }
-}
+  };
+};
 
 const getPackages = async (config: ChannelConfig, transporter: Transporter) => {
   const pkgs: string[] = [];
   let currentConfig = config;
-  while (true) {
+  while (true) { // eslint-disable-line
+    // eslint-disable-next-line no-await-in-loop
     const { newConfig, pkg } = await getPackage(currentConfig, transporter);
     if (!pkg) {
       return {
@@ -65,7 +67,7 @@ const getPackages = async (config: ChannelConfig, transporter: Transporter) => {
     }
     currentConfig = newConfig;
     pkgs.push(pkg);
-  };
+  }
 };
 
 const send = async (data: string, config: ChannelConfig, transporter: Transporter) => {
@@ -82,15 +84,13 @@ const send = async (data: string, config: ChannelConfig, transporter: Transporte
   };
 };
 
-const createConfig = async (): Promise<ChannelConfig> => {
-  return {
-    keys: {
-      nextChannelKey: 'a',
-      nextId: 'b',
-      nextIdKey: 'c',
-    }
-  }
-};
+const createConfig = async (): Promise<ChannelConfig> => ({
+  keys: {
+    nextChannelKey: 'a',
+    nextId: 'b',
+    nextIdKey: 'c',
+  },
+});
 
 export {
   encrypt,

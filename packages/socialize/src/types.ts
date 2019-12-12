@@ -13,7 +13,8 @@ export interface RuleApi<ConfigType, MessageType> {
   setConfig: (config: Config<ConfigType>) => Promise<void>;
 }
 
-export type RuleRunner<MessageResponseType, ConfigType, MessageType> = (api: RuleApi<ConfigType, MessageType>) => Promise<MessageResponseType | null>
+export type RuleRunner<MessageResponseType, ConfigType, MessageType>
+  = (api: RuleApi<ConfigType, MessageType>) => Promise<MessageResponseType | null>
 
 export interface Rules {
   get: <MessageResponseType>(name: string) => Promise<RuleRunner<MessageResponseType, any, any>>;

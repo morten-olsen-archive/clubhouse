@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { Channel } from '@morten-olsen/clubhouse-protocol';
-import { createEnv, EnvType } from '@morten-olsen/clubhouse-protocol/src/helpers/test';
+import { createEnv, EnvType } from './helpers/test';
 import socialize, { BuildIns, fromInvite } from './index';
 
 const createConfig = (init: any = undefined) => {
@@ -21,7 +21,7 @@ describe('socialize', () => {
     env = await createEnv(3);
   });
 
-  it('should be able to sozialize a channel', async () => {
+  it('should be able to socialize a channel', async () => {
     const channel = await Channel.create(
       env.users[0].identity,
       env.keyring,
@@ -78,5 +78,9 @@ describe('socialize', () => {
     await socials[1].update();
     expect(messages[0]).to.have.length(1);
     expect(messages[1]).to.have.length(1);
+  });
+
+  it('should be able to end', () => {
+    socials.forEach((s) => s.destroy());
   });
 });

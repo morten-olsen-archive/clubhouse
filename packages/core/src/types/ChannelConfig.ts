@@ -4,6 +4,6 @@ interface ChannelConfig {
     nextIdKey: string;
     nextChannelKey: string;
   };
-};
+}
 
 export default ChannelConfig;

@@ -2,9 +2,9 @@ import * as openpgp from 'openpgp';
 import { describeUser } from './helpers/key';
 
 const getKeys = async (pubs: string[]) => {
-  const keys = await Promise.all(pubs.map(key => openpgp.key.readArmored(key)));
-  return keys.map(key => key.keys[0]);
-}
+  const keys = await Promise.all(pubs.map((key) => openpgp.key.readArmored(key)));
+  return keys.map((key) => key.keys[0]);
+};
 
 export const encrypt = async (data: any, sender: openpgp.key.Key, receivers: string[]) => {
   const raw = JSON.stringify(data);
@@ -15,7 +15,7 @@ export const encrypt = async (data: any, sender: openpgp.key.Key, receivers: str
     privateKeys: [sender],
   });
   return encrypted.data;
-}
+};
 
 export const decrypt = async (data: string, senders: string[], receiver: openpgp.key.Key) => {
   const senderKeys = await getKeys(senders);
@@ -26,9 +26,9 @@ export const decrypt = async (data: string, senders: string[], receiver: openpgp
     privateKeys: [receiver],
   });
   const rawData = decrypted.data as string;
-  
+
   const receiverIds = message.getEncryptionKeyIds();
-  const receivers = receiverIds.map(id => describeUser(id, senderKeys));
+  const receivers = receiverIds.map((id) => describeUser(id, senderKeys));
   const sender = describeUser(decrypted.signatures[0].keyid, [
     ...senderKeys,
     receiver,
@@ -38,7 +38,7 @@ export const decrypt = async (data: string, senders: string[], receiver: openpgp
     ...decrypted,
     data: decrypted.data as string,
     receivers,
-    sender: sender,
+    sender,
     message: JSON.parse(rawData),
-  }
-}
+  };
+};

@@ -8,10 +8,17 @@ const getChannel = (): ChannelConfig => ({
     nextId: 'foo',
     nextIdKey: 'baz',
     nextChannelKey: 'bar',
-  }
-})
+  },
+});
 
 describe('channel', () => {
+  it('should be able to generate config', async () => {
+    const config = await channel.createConfig();
+    expect(typeof config.keys.nextChannelKey).to.eql('string');
+    expect(typeof config.keys.nextId).to.eql('string');
+    expect(typeof config.keys.nextIdKey).to.eql('string');
+  });
+
   it('should be able to encrypt/decrypt', async () => {
     const encrypted = await channel.encrypt('foo', 'bar');
     const decrypted = await channel.decrypt(encrypted, 'bar');
