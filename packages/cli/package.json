@@ -1,0 +1,10 @@
+{
+  "name": "@morten-olsen/clubhouse-cli",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@morten-olsen/clubhouse-protocol": "0.0.0",
+    "@morten-olsen/clubhouse-socialize": "0.0.0",
+    "commander": "4.0.1"
+  }
+}

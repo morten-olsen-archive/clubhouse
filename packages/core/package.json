@@ -1,0 +1,11 @@
+{
+  "name": "@morten-olsen/clubhouse-core",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "dependencies": {
+    "openpgp": "4.7.1"
+  },
+  "devDependencies": {
+    "@types/openpgp": "4.4.7"
+  }
+}

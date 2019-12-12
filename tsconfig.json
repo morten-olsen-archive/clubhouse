@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "strict": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
+  },
+  "files": [],
+  "references": [{
+    "path": "packages/core/tsconfig.json"
+  }, {
+    "path": "packages/protocol/tsconfig.json"
+  }, {
+    "path": "packages/socialize/tsconfig.json"
+  }, {
+    "path": "packages/cli/tsconfig.json"
+  }]
+}
