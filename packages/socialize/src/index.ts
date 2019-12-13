@@ -96,7 +96,10 @@ export const fromInvite = async (
   };
 };
 
+type SocialType = ReturnType<typeof socialize>;
+
 export {
+  SocialType,
   BuildIns,
 };
 

@@ -7,7 +7,7 @@
     "airbnb"
   ],
   "env": {
-    "mocha": true,
+    "mocha": true
   },
   "rules": {
     "no-underscore-dangle": 0,
@@ -37,9 +37,8 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js",".jsx",".ts",".tsx"],
-      },
-      "babel-module": {}
+        "extensions": [".js",".jsx",".ts",".tsx"]
+      }
     }
   }
 }

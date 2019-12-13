@@ -4,6 +4,7 @@ export interface Config<ConfigType> {
   ruleName: string;
   members: string[];
   data: ConfigType;
+  channelData: any;
 }
 
 export interface RuleApi<ConfigType, MessageType> {

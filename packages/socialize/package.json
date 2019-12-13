@@ -2,6 +2,10 @@
   "name": "@morten-olsen/clubhouse-socialize",
   "version": "0.0.0",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morten-olsen/clubhouse"
+  },
   "dependencies": {
     "@morten-olsen/clubhouse-protocol": "0.0.0"
   }
